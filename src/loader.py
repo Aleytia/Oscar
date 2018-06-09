@@ -61,10 +61,10 @@ def load_history(path):
             except:
                 raise Exception("A bad history file was provided.")
     except:
-        return list()
+        return dict()
 
     # Just a quick check to return a list if empty
-    if history is None: history = list()
+    if history is None: history = dict()
 
     # We assume history file is good, since it's machine edited
     return history

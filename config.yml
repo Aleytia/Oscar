@@ -4,26 +4,30 @@ reddit:
 subreddits:
     - name: "Animemes" 
       threshold: 500
-      limit: 250
-      rclone: "toshokan:Stash/Animemes"
+      rclone: 
+        - "toshokan:Stash/Animemes"
               
     - name: "Doujinshi"
       threshold: 750
-      limit: 100
-      rclone: "toshokan:Doujinshi"
+      rclone: 
+        - "toshokan:Doujinshi"
       filters:
          - tentacles
          - pregnant
 
     - name: "anime_irl"
-      threshold: 500
-      rclone: "toshokan:Stash/anime_irl"
+      rclone: 
+        - "toshokan:Stash/anime_irl"
+
+    - name: "Popular"
 
 global:
-    threshold: 500
+    threshold: 600
     filters:
         - tentacles
         - pregnant
-    rclone: "toshokan:Stash"
-    limit: 1000
+        - Erwin
+    rclone: 
+        - "toshokan:Stash"
+    limit: 25
 
