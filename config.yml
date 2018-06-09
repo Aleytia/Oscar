@@ -4,6 +4,8 @@ reddit:
 subreddits:
     - name: "Animemes" 
       threshold: 500
+      days: True
+      repeats: False
       rclone: 
         - "toshokan:Stash/Animemes"
               
@@ -12,14 +14,19 @@ subreddits:
       rclone: 
         - "toshokan:Doujinshi"
       filters:
-         - tentacles
-         - pregnant
+         - "tentacles"
+         - "pregnant"
+         - "[INCEST]"
+         - "square panic"  
 
     - name: "anime_irl"
+      repeats: True
       rclone: 
         - "toshokan:Stash/anime_irl"
 
-    - name: "Popular"
+    - name: "popular"
+      limit: 200
+
 
 global:
     threshold: 600
@@ -30,4 +37,5 @@ global:
     rclone: 
         - "toshokan:Stash"
     limit: 25
+    days: off
 

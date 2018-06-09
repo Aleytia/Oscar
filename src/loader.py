@@ -11,6 +11,7 @@ def load_config(path):
     NO_GLOBAL_RCLONE = False
     NO_GLOBAL_THRESHOLD = False
     NO_GLOBAL_LIMIT = False
+    NO_GLOBAL_DAYS = False
 
     try:
         with open(path, 'r') as cfyml:
@@ -31,6 +32,7 @@ def load_config(path):
     if "threshold" not in gbl: NO_GLOBAL_THRESHOLD = True
     if "rclone" not in gbl: NO_GLOBAL_RCLONE = True
     if "limit" not in gbl: NO_GLOBAL_LIMIT = True
+    if "days" not in gbl: NO_GLOBAL_DAYS = True
 
     for subreddit in config['subreddits']:
         """
@@ -48,6 +50,9 @@ def load_config(path):
         if NO_GLOBAL_LIMIT:
             if "limit" not in subreddit:
                 raise Exception("Missing threshold in r/" + subreddit['name'])
+        if NO_GLOBAL_DAYS:
+            if "days" not in subreddit:
+                raise Exception("Missing days in r/" + subreddit['name'])
 
     return config
 
