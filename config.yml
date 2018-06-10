@@ -1,5 +1,5 @@
 reddit:
-    client_id:
+    client_id: 
     client_secret:
 subreddits:
     - name: "Animemes" 
@@ -19,8 +19,6 @@ subreddits:
 global:
     threshold: 600
     filters:
-        - tentacles
-        - pregnant
         - Erwin
     rclone: 
         - "toshokan:Stash"

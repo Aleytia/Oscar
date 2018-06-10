@@ -23,8 +23,8 @@ def easy(subreddit, submission, sbr_config, temp_dir, days, repeats):
     name = name + submission.url[-4:]
     name = name.replace('/', ' ') # Replace / characters for Windows
     
-    # Let's use wget and not requests for this
-    os.system("wget " + submission.url + " -O " + quote(temp_dir + name))
+    # Let's use /usr/bin/wget and not requests for this
+    os.system("/usr/bin/wget " + submission.url + " -O " + quote(temp_dir + name))
 
 
 def video(subreddit, submission, sbr_config, temp_dir, days, repeats):
@@ -42,14 +42,14 @@ def video(subreddit, submission, sbr_config, temp_dir, days, repeats):
 
     audio = requests.get(audio_url)
     if audio.status_code != 200:
-        os.system("wget " + video_url + " -O " + quote(temp_dir + name))
+        os.system("/usr/bin/wget " + video_url + " -O " + quote(temp_dir + name))
         return
 
     # There IS an audio track
-    os.system("wget " + video_url + " -O " + quote(temp_dir + submission.id + ".mp4"))
-    os.system("wget " + audio_url + " -O " + quote(temp_dir + submission.id + ".mp3"))
-    os.system("ffmpeg -i " + quote(temp_dir) + 
+    os.system("/usr/bin/wget " + video_url + " -O " + quote(temp_dir + submission.id + ".mp4"))
+    os.system("/usr/bin/wget " + audio_url + " -O " + quote(temp_dir + submission.id + ".mp3"))
+    os.system("/usr/bin/ffmpeg -i " + quote(temp_dir) + 
             submission.id + ".mp4 -i " + quote(temp_dir) + 
             submission.id + ".mp3 -c copy -y " + 
             quote(temp_dir + name))
-    os.system("rm " + quote(temp_dir) + submission.id + ".mp4 " + quote(temp_dir) + submission.id + ".mp3")
+    os.system("/bin/rm " + quote(temp_dir) + submission.id + ".mp4 " + quote(temp_dir) + submission.id + ".mp3")

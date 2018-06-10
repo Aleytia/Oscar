@@ -78,7 +78,7 @@ def handle(subreddit, submission, sbr_config, home, days, repeats):
 
 def rip(config, history, home):
 
-	os.system("mkdir -p " + quote(home + ".temp"))
+	os.system("/bin/mkdir -p " + quote(home + ".temp"))
 
 	reddit = praw.Reddit(client_id=config['reddit']['client_id'],
 						 client_secret=config['reddit']['client_secret'],
@@ -181,14 +181,14 @@ def rip(config, history, home):
 
 		# After each submission is processed, call rclone to upload them
 		upload.upload(rclone, quote(home + ".temp"), days)
-		os.system("rm -rf " + quote(home + ".temp/") + '*')
+		os.system("/bin/rm -rf " + quote(home + ".temp/") + '*')
 
 		# Update the history object with the new data
 		history[name] = list(index)  
 		print()
 
 	# for sbr in subreddits end
-	os.system("rm -r " + quote(home + ".temp"))
+	os.system("/bin/rm -r " + quote(home + ".temp"))
 
 	# This is where the for loop ends
 	return history

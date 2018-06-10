@@ -21,7 +21,7 @@ def standard(subreddit, submission, sbr_config, temp_dir, days, repeats):
 
     url = submission.url + ".png"
 
-    os.system("wget " + url + " -O " + quote(temp_dir + name))
+    os.system("/usr/bin/wget " + url + " -O " + quote(temp_dir + name))
 
 def album(subreddit, submission, sbr_config, temp_dir, days, repeats):
     
@@ -35,9 +35,9 @@ def album(subreddit, submission, sbr_config, temp_dir, days, repeats):
 
     url = submission.url + "/zip"
 
-    os.system("wget " + url + " -O " + quote(temp_dir + zip_name))
-    os.system("unzip " + quote(temp_dir + zip_name) + " -d " + quote(temp_dir + name))
-    os.system("rm " + quote(temp_dir + zip_name))
+    os.system("/usr/bin/wget " + url + " -O " + quote(temp_dir + zip_name))
+    os.system("/usr/bin/unzip " + quote(temp_dir + zip_name) + " -d " + quote(temp_dir + name))
+    os.system("/bin/rm " + quote(temp_dir + zip_name))
 
 def gifv(subreddit, submission, sbr_config, temp_dir, days, repeats):
     
@@ -48,6 +48,6 @@ def gifv(subreddit, submission, sbr_config, temp_dir, days, repeats):
 
     url = submission.url[:-5] + ".gif"
 
-    os.system("wget " + url + " -O " + quote(temp_dir + name))
+    os.system("/usr/bin/wget " + url + " -O " + quote(temp_dir + name))
 
 
