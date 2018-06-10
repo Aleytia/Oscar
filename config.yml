@@ -1,6 +1,6 @@
 reddit:
-    client_id: "mfFWD7VjBH7XlA"
-    client_secret: "6OhJrfTYJT_KstZ_TjE0eWDEGKI"
+    client_id:
+    client_secret:
 subreddits:
     - name: "Animemes" 
       threshold: 500
