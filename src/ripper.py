@@ -8,6 +8,8 @@ import yaml
 from shlex import quote
 from collections import deque
 
+from src import upload
+
 from src.downloaders import easy
 from src.downloaders import imgur
 from src.downloaders import video
@@ -44,19 +46,19 @@ def handle(subreddit, submission, sbr_config, home, days, repeats):
 
     # Easy links that we can just download directly
     if link.startswith(easy_wget_prefix) and link.endswith(easy_wget_suffix):
-#        easy.easy(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
+        easy.easy(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
         return
 
     # Either an album or another imgur thing that we just need to process
     if link.startswith(imgur_image): 
         if not link.startswith(imgur_album):
             print("Found imgur append .png -> wget")
-#            imgur.standard(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
+            imgur.standard(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
             return
 
         elif link.startswith(imgur_album):
             print("Found an imgur album")
-#            imgur.album(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
+            imgur.album(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
             return
     
     # A gifv!
@@ -164,9 +166,25 @@ def rip(config, history, home):
                     " (" + submission.url + ") " + str(submission.link_flair_text))
             """
 
+            # Download new media into .temp
             handle(subreddit, submission, sbr, home, days, repeats)
 
+            # Update the history in the deque to now contain the new post
+            index.appendleft(submission.id)
+            if len(index) > limit:
+                while len(index) > limit:
+                    index.pop()
+
+        # After each submissino is processed, call rclone to upload them
+        upload.upload(rclone, quote(home + ".temp"), days)
+        os.system("rm -r " + quote(home + ".temp/") + '*')
+
+
+        history[name] = list(index)  
         print()
-    os.system("rm -r " + quote(home + ".temp"))
+
+    # for sbr in subreddits end
+#    os.system("rm -r " + quote(home + ".temp"))
 
     # This is where the for loop ends
+    return history
