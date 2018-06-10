@@ -6,6 +6,7 @@ from argparse import ArgumentParser
 
 from src import loader
 from src import ripper
+from src import saver
 
 def parse_args():
     parser = ArgumentParser(description=__doc__)
@@ -27,10 +28,11 @@ def main():
     history = loader.load_history(args.x[0]) if args.x else loader.load_history("history.yml")
 
     dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
-    ripper.rip(config, history, dir_path)
 
-#    pp.pprint(config,width=1)
-#    pp.pprint(history,width=1)
+    new_history = ripper.rip(config, history, dir_path)
+
+    hsyml = args.x[0] if args.x else "history.yml"
+    saver.update(new_history, hsyml)
 
 if __name__ == "__main__":
     main()

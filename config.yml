@@ -6,9 +6,16 @@ subreddits:
       threshold: 500
       days: False
       repeats: False
+      limit: 5
       rclone: 
         - "toshokan:Animemes/"
-
+    - name: "anime_irl"
+      threshold: 500
+      days: True
+      repeats: True
+      limit: 15
+      rclone:
+        - "toshokan:anime_irl/"
 global:
     threshold: 600
     filters:

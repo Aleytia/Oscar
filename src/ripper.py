@@ -171,15 +171,16 @@ def rip(config, history, home):
 
             # Update the history in the deque to now contain the new post
             index.appendleft(submission.id)
-            if len(index) > limit:
-                while len(index) > limit:
-                    index.pop()
 
-        # After each submissino is processed, call rclone to upload them
+        # Make sure what we're storing isn't over the total limit of posts we want
+        while len(index) > limit:
+            index.pop()
+
+        # After each submission is processed, call rclone to upload them
         upload.upload(rclone, quote(home + ".temp"), days)
-        os.system("rm -r " + quote(home + ".temp/") + '*')
+        os.system("rm -rf " + quote(home + ".temp/") + '*')
 
-
+        # Update the history object with the new data
         history[name] = list(index)  
         print()
 
