@@ -61,6 +61,7 @@ def handle(subreddit, submission, sbr_config, home, days, repeats):
 	# Hotfix
 	if link.startswith(imgur_album_m):
 		imgur.album(subreddit, submission, sbr_config, TEMP_DIR, days, repeats)
+                return
 	
 	# A gifv!
 	if link.startswith(imgur_i) and link.endswith(imgur_gifv):

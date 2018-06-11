@@ -23,6 +23,13 @@ def standard(subreddit, submission, sbr_config, temp_dir, days, repeats):
 
     os.system("/usr/bin/wget " + url + " -O " + quote(temp_dir + name))
 
+    # Usually it's a PNG, but if it's a gif...
+    gifq = os.popen("/usr/bin/file -b " + quote(temp_dir + name)).read()
+    if "GIF" in gifq:
+        print("Detected gif, changing files...")
+        gif_name = name[:-4] + ".gif"
+        os.system("/bin/mv " + quote(temp_dir + name) + " " + quote(temp_dir + gif_name))
+
 def album(subreddit, submission, sbr_config, temp_dir, days, repeats):
     
     name = submission.title

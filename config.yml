@@ -1,21 +1,15 @@
 reddit:
-    client_id: 
+    client_id:
     client_secret:
 subreddits:
-    - name: "Animemes" 
+    - name: "Animemes"
       threshold: 500
       days: False
       repeats: False
-      limit: 5
+      limit: 200
       rclone: 
         - "toshokan:Animemes/"
-    - name: "anime_irl"
-      threshold: 500
-      days: True
-      repeats: True
-      limit: 15
-      rclone:
-        - "toshokan:anime_irl/"
+
 global:
     threshold: 600
     filters:
