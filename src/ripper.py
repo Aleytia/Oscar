@@ -183,6 +183,7 @@ def rip(config, history, home):
 		# After each submission is processed, call rclone to upload them
 		upload.upload(rclone, quote(home + ".temp"), days)
 		os.system("/bin/rm -rf " + quote(home + ".temp/") + '*')
+		os.system("/bin/rm -rf " + quote(home + ".temp/") + '.*')
 
 		# Update the history object with the new data
 		history[name] = list(index)  
