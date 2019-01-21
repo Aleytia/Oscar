@@ -21,18 +21,17 @@ def parse_args():
     return parser.parse_args()
 
 def main():
-    args = parse_args()
+	args = parse_args()
 
     # Load config and history
-    config = loader.load_config(args.c[0]) if args.c else loader.load_config("config.yml")
-    history = loader.load_history(args.x[0]) if args.x else loader.load_history("history.yml")
+	config = loader.load_config(args.c[0]) if args.c else loader.load_config("config.yml")
+	history = loader.load_history(args.x[0]) if args.x else loader.load_history("history.yml")
 
-    dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
+	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
+	new_history = ripper.rip(config, history, dir_path)
 
-    new_history = ripper.rip(config, history, dir_path)
-
-    hsyml = args.x[0] if args.x else "history.yml"
-    saver.update(new_history, hsyml)
+	hsyml = args.x[0] if args.x else "history.yml"
+	saver.update(new_history, hsyml)
 
 if __name__ == "__main__":
     main()

@@ -21,7 +21,11 @@ def upload(rclone, temp_dir, days):
     BASE_DATE = str(time.year) + '.' + str(time.month).zfill(2)
     DAY = '/' + str(time.day).zfill(2)
 
-    command = "rclone copy " + quote(temp_dir) + " "
+    if not os.listdir(temp_dir):
+        print(".temp is empty, not running rclone; returning.")
+        return
+
+    command = "/usr/bin/rclone copy " + quote(temp_dir) + " "
     for end in rclone:
         if not days:
             if end.endswith('/'):

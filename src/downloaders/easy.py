@@ -23,4 +23,4 @@ def easy(subreddit, submission, sbr_config, temp_dir, days, repeats):
     name = name.replace('/', ' ') # Replace / characters for Windows
     
     # Let's use wget and not requests for this
-    os.system("wget " + submission.url + " -O " + quote(temp_dir + name))
+    os.system("/usr/bin/wget " + submission.url + " -O " + quote(temp_dir + name))
