@@ -1,26 +1,18 @@
 reddit:
-    client_id: "mfFWD7VjBH7XlA"
-    client_secret: "6OhJrfTYJT_KstZ_TjE0eWDEGKI"
+    client_id:
+    client_secret:
 subreddits:
-    - name: "Animemes" 
+    - name: "Animemes"
       threshold: 500
       days: False
       repeats: False
-      limit: 5
+      limit: 200
       rclone: 
         - "toshokan:Animemes/"
-    - name: "anime_irl"
-      threshold: 500
-      days: True
-      repeats: True
-      limit: 15
-      rclone:
-        - "toshokan:anime_irl/"
+
 global:
     threshold: 600
     filters:
-        - tentacles
-        - pregnant
         - Erwin
     rclone: 
         - "toshokan:Stash"
